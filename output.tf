@@ -8,10 +8,10 @@ output "IGW" {
    value       = aws_internet_gateway.my_igw.id
 }
 output "pvt_subnet" {
-    value = aws_subnet.private_subnet-02.id
+    value = aws_subnet.private_subnet_02.id
 }
 output "pub_subnet" {
-    value = aws_subnet.public_subnet-01.id
+    value = aws_subnet.public_subnet_01.id
 }
 output "pub_route_table" {
     value = aws_route_table.pub-rt.id
