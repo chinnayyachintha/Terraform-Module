@@ -8,7 +8,7 @@ output "IGW" {
    value       = aws_internet_gateway.my_igw.id
 }
 output "pvt_subnet" {
-    values = aws_subnet.private_subnet-02.id
+    value = aws_subnet.private_subnet-02.id
 }
 output "pub_subnet" {
     value = aws_subnet.public_subnet-01.id
@@ -16,6 +16,6 @@ output "pub_subnet" {
 output "pub_route_table" {
     value = aws_route_table.pub-rt.id
 }
-output "" {
+output "security_group" {
     value = aws_security_group.sg-vpc-01.id
 }
