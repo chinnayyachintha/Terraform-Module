@@ -1,5 +1,7 @@
 variable "cidr_blocks" {
-  type        = list(string)
+  type = list(object({
+    cidr_block = string
+  }))
   description = "List of cidr block ranges"
 }
 
