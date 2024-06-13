@@ -5,3 +5,6 @@ cidr_blocks = [
 ]
 env_prefix = "Dev-Env"
 region = "us-east-1"
+values              = ["amzn2-ami-hvm-*-x86_64-gp2"]
+public_key_location = "~/.ssh/id_rsa.pub"
+instance_type       = "t2.micro"
