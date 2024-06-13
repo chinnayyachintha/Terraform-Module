@@ -67,8 +67,8 @@ resource "aws_route_table_association" "pvt_ass_rt"{
 }
 
 # creating security group
-resource "aws_security_group" "sg-vpc-01" {
-  name = "mySg"
+resource "aws_security_group" "sg_vpc_01" {
+  name = "mySG"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id  = aws_vpc.vpc-01.id
 
@@ -76,7 +76,7 @@ resource "aws_security_group" "sg-vpc-01" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["60.243.199.167/32"]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   ingress {

@@ -17,5 +17,5 @@ output "pub_route_table" {
     value = aws_route_table.pub-rt.id
 }
 output "security_group" {
-    value = aws_security_group.sg-vpc-01.id
+    value = aws_security_group.sg_vpc_01.id
 }
