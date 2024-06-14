@@ -25,6 +25,6 @@ module "webserver" {
   values = var.values
   public_key_location  = var.public_key_location
   instance_type = var.instance_type
-  subnet_id = module.Myapp_Subnet.subnet.id
+  subnet_id = module.Myapp_Subnet.pub_subnet.id
 
 }
