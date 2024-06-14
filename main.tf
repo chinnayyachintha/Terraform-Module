@@ -7,7 +7,7 @@ resource "aws_vpc" "vpc-01" {
   }
 }
 
-# Module declaration and reference path
+# Subnet  Module declaration and reference path 
 
 module "Myapp_Subnet" {
   source = "./Modules/Subnet"
@@ -16,73 +16,16 @@ module "Myapp_Subnet" {
   env_prefix = var.env_prefix
 }
 
-# creating security group
-resource "aws_security_group" "sg_vpc_01" {
-  name = "mySG"
-  description = "Allow TLS inbound traffic and all outbound traffic"
-  vpc_id  = aws_vpc.vpc-01.id
+# Instance(Webserver)  Module declaration and reference path 
 
-    ingress {
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
+module "webserver" {
 
-  ingress {
-    from_port        = 8080
-    to_port          = 8080
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
+source ="./Modules/web-server"
+vpc_id = aws_vpc.vpc-01.id
+env_prefix = var.env_prefix
+values = var.values
+public_key_location  = var.public_key_location
+instance_type = var.instance_type
+subnet_id = module.Myapp_Subnet.subnet.id
 
-   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
-   tags = {
-    Name = "${var.env_prefix}-sg-vpc-01"
-  }
 }
-
-data "aws_ami" "latest-amazon-linux-image" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = var.values
-  }
-
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
-resource "aws_key_pair" "ssh-key" {
-  key_name   = "server-key"
-  public_key = file(var.public_key_location)  
-}
-
-resource "aws_instance" "my-app-server" {
-  ami                    = data.aws_ami.latest-amazon-linux-image.id
-  instance_type          = var.instance_type
-  subnet_id              = module.Myapp_Subnet.subnet.id
-  vpc_security_group_ids = [aws_security_group.sg_vpc_01.id]  
-
-  associate_public_ip_address = true
-  key_name                    = aws_key_pair.ssh-key.key_name 
-
-  tags = {
-    Name = "${var.env_prefix}-my-app-server"  
-  }
-}
-
