@@ -16,10 +16,10 @@ output "IGW_id" {
     # value = <module>.<module-name>.<output-name-in-module>.id    
     value       = module.Myapp_Subnet.IGW.id
 }
-output "pvt_subnet_id" {
-    # value = <module>.<module-name>.<output-name-in-module>.id
-    value = module.Myapp_Subnet.pvt_subnet.id
-}
+# output "pvt_subnet_id" {
+#     # value = <module>.<module-name>.<output-name-in-module>.id
+#     value = module.Myapp_Subnet.pvt_subnet.id
+# }
 
 output "pub_route_table_id" {
     # value = <module>.<module-name>.<output-name-in-module>.id
