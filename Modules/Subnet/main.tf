@@ -51,8 +51,8 @@ resource "aws_route_table_association" "pub_ass_rt"{
   route_table_id = aws_route_table.pub-rt.id
 }
 
-#pvt-subnet association with pvt-route table
-resource "aws_route_table_association" "pvt_ass_rt"{
-  subnet_id = aws_subnet.private_subnet_02.id
-  route_table_id = aws_route_table.pvt-rt.id
-}
+# #pvt-subnet association with pvt-route table
+# resource "aws_route_table_association" "pvt_ass_rt"{
+#   subnet_id = aws_subnet.private_subnet_02.id
+#   route_table_id = aws_route_table.pvt-rt.id
+# }

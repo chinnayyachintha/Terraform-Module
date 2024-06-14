@@ -7,9 +7,9 @@ output "pvt_routable"{
 output "IGW" {
    value       = aws_internet_gateway.my_igw
 }
-output "pvt_subnet" {
-    value = aws_subnet.private_subnet_02
-}
+# output "pvt_subnet" {
+#     value = aws_subnet.private_subnet_02
+# }
 
 output "pub_route_table" {
     value = aws_route_table.pub-rt
