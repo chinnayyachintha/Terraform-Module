@@ -19,13 +19,12 @@ module "Myapp_Subnet" {
 # Instance(Webserver)  Module declaration and reference path 
 
 module "webserver" {
-
-source ="./Modules/web-server"
-vpc_id = aws_vpc.vpc-01.id
-env_prefix = var.env_prefix
-values = var.values
-public_key_location  = var.public_key_location
-instance_type = var.instance_type
-subnet_id = module.Myapp_Subnet.subnet.id
+  source ="./Modules/web-server"
+  vpc_id = aws_vpc.vpc-01.id
+  env_prefix = var.env_prefix
+  values = var.values
+  public_key_location  = var.public_key_location
+  instance_type = var.instance_type
+  subnet_id = module.Myapp_Subnet.subnet.id
 
 }
